@@ -1,8 +1,8 @@
-use crate::quadratic::quadratic;
+use crate::quarter_of::quarter_of;
 
-mod quadratic;
-
+mod quarter_of;
+mod warn_the_sheep;
 
 fn main() {
-    println!("{:?}",quadratic(1,0))
+    println!("{:?}",quarter_of(11))
 }
