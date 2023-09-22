@@ -3,9 +3,12 @@ use crate::quarter_of::quarter_of;
 
 mod quarter_of;
 mod warn_the_sheep;
+mod other_angle;
+mod usdcny;
+mod contamination;
 
 fn main() {
     let now = Instant::now();
-    println!("{:?}",quarter_of(11));
+    println!("{:?}", contamination::contamination("sdf", "a"));
     println!("{:?}", now.elapsed())
 }
