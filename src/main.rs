@@ -9,9 +9,12 @@ mod contamination;
 mod find_mutl;
 mod invert;
 mod merge_arrays;
+mod sum_mixed_array;
+mod fake_bit;
+mod abbr;
 
 fn main() {
     let now = Instant::now();
-    println!("{:?}", merge_arrays::merge_arrs(&[1,3,5,7,9,11,12], &[1,2,3,4,5,10,12]));
+    println!("{:?}", fake_bit::fake_bin("3489592376491716397323956896"));
     println!("{:?}", now.elapsed())
 }
