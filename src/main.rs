@@ -1,5 +1,4 @@
 use std::time::Instant;
-use crate::quarter_of::quarter_of;
 
 mod quarter_of;
 mod warn_the_sheep;
