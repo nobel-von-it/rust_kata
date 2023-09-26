@@ -1,19 +1,9 @@
 use std::time::Instant;
-
-mod quarter_of;
-mod warn_the_sheep;
-mod other_angle;
-mod usdcny;
-mod contamination;
-mod find_mutl;
-mod invert;
-mod merge_arrays;
-mod sum_mixed_array;
-mod fake_bit;
-mod abbr;
+mod first_non_consecutive;
+mod find_difference;
 
 fn main() {
     let now = Instant::now();
-    println!("{:?}", fake_bit::fake_bin("3489592376491716397323956896"));
+    println!("{:?}", find_difference::find_difference(&[3,2,5], &[1,4,4]));
     println!("{:?}", now.elapsed())
 }
