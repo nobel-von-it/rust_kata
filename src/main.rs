@@ -1,6 +1,8 @@
 use std::time::Instant;
 mod first_non_consecutive;
 mod find_difference;
+mod combat;
+mod switch_it_up;
 
 fn main() {
     let now = Instant::now();
