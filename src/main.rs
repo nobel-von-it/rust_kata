@@ -8,6 +8,11 @@ mod two_sort;
 mod bin_to_dec;
 mod calc_bmi;
 mod find_average;
+mod power_of_two;
+mod make_uppercase;
+mod min_max;
+mod count_pos_sum_neg;
+mod sum_pos;
 
 fn main() {
     let now = Instant::now();
