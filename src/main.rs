@@ -5,7 +5,6 @@ mod flick_swich;
 mod str_repeat;
 mod bonus_time;
 mod to_alternating_case;
-mod cannon_ready;
 
 fn main() {
     let now = Instant::now();
