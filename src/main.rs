@@ -1,13 +1,12 @@
+mod html_special_chars;
+mod double_char;
+mod set_alarm;
+mod prs;
+
 use std::time::Instant;
-mod palindr;
-mod two_sum;
-mod flick_swich;
-mod str_repeat;
-mod bonus_time;
-mod to_alternating_case;
 
 fn main() {
     let now = Instant::now();
-    println!("{:?}", to_alternating_case::to_alternating_case("heLLo"));
-    println!("{:?}", now.elapsed())
+    println!("{:?}", 1);
+    println!("{:?}", now.elapsed());
 }
