@@ -1,8 +1,9 @@
 use std::time::Instant;
 
-pub mod kata_rs;
+pub mod kata;
+pub mod maybe_kata;
 
-// in the kata_rs module:
+// in the kata module:
 // ---
 // kata is a ready-made code, divided by complexity,
 // there are also some tests,
@@ -12,7 +13,6 @@ pub mod kata_rs;
 // ---
 fn main() {
     let now = Instant::now();
-
     println!("{:?}", 1);
     println!("{:?}", now.elapsed());
 }
