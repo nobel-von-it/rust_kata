@@ -1,10 +1,15 @@
-mod html_special_chars;
-mod double_char;
-mod set_alarm;
-mod prs;
-
 use std::time::Instant;
+
 pub mod kata_rs;
+
+// in the kata_rs module:
+// ---
+// kata is a ready-made code, divided by complexity,
+// there are also some tests,
+// but I will not write tests for all codes;
+// ---
+// maybe_kata is where I will write any code before structuring and optimizing.
+// ---
 fn main() {
     let now = Instant::now();
 
