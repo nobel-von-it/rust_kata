@@ -1,3 +1,7 @@
-pub fn test() {
-    println!("hello")
+pub mod kyu8 {
+
+}
+pub mod test {
+    use crate::maybe_kata::code;
+
 }

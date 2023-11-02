@@ -19,3 +19,21 @@ fn rps_test() {
     assert_eq!(kata::kyu8::rps2("rock", "rock"), "Draw!");
     println!("{:?}", now.elapsed())
 }
+
+#[test]
+fn phone_test() {
+    let now = Instant::now();
+    assert_eq!(kata::kyu8::create_phone_number1(&[1,2,3,4,5,6,7,8,9,0]), "(123) 456-7890");
+    println!("{:?}", now.elapsed())
+}
+#[test]
+fn avg_and_next_id_tests() {
+    assert_eq!(kata::kyu8::get_average(&[2,2,2,2]), 2);
+    assert_eq!(kata::kyu8::get_average(&[1,2,3,4,5,6,7,8,9]), 5);
+    assert_eq!(kata::kyu8::next_id(&[0,1,2,4,5]), 3);
+    assert_eq!(kata::kyu8::next_id(&[0,1,2,3,4,5,6,7,8,9,10]), 11);
+    assert_eq!(kata::kyu8::next_id(&[0,1,2,3,4,5,6,7,8,9,11]), 10);
+    assert_eq!(kata::kyu8::next_id(&[0,1,2,3,4,5,6,7,8,9, 9,11]), 10);
+    assert_eq!(kata::kyu8::next_id(&[]), 0);
+    assert_eq!(kata::kyu8::next_id(&[10]), 0);
+}

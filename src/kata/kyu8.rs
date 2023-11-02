@@ -50,7 +50,7 @@ pub fn bonus_time2(s: u64, b: bool) -> String {
 }
 
 pub fn contamination(text: &str, character: &str) -> String {
-    let mut s = String::from(character);
+    let s = String::from(character);
     s.repeat(text.len())
 
     // character.repeat(text.len())
@@ -68,12 +68,18 @@ pub fn correct_tail_simplify(b: &str, t: char) -> bool {
     b.ends_with(t)
 }
 
-pub fn create_phone_number(numbers: &[u8]) -> String {
-    let res = String::from(numbers);
-
-    "(".to_owned() + &res[..3] + ")" + " " + &res[3..6] + "-" + &res[6..]
+pub fn create_phone_number1(numbers: &[u8]) -> String {
+    let result = numbers.iter().map(|s| s.to_string()).collect::<Vec<String>>();
+    let fp = result[0..3].join("");
+    let sp = result[3..6].join("");
+    let tp = result[6..].join("");
+    format!("({}) {}-{}", fp, sp, tp)
 }
-
+//or
+pub fn create_phone_number2(numbers: &[u8]) -> String {
+    let result: String = numbers.into_iter().map(|e| e.to_string()).collect();
+    format!("({}) {}-{}", &result[..3], &result[3..6], &result[6..])
+}
 pub fn digital_root(n: i64) -> i64 {
     let mut res = n;
     while res > 9 {
@@ -197,8 +203,6 @@ pub fn html_special_chars(html: &str) -> String {
 
 pub fn merge_arrays1(arr1: &[i32], arr2: &[i32]) -> Vec<i32> {
     let mut v: Vec<i32> = vec![];
-    let l1 = arr1.len();
-    let l2 = arr2.len();
     for i in arr1 {
         if !v.contains(i) {
             v.push(*i)
@@ -296,7 +300,7 @@ pub fn sum_of_differences1(arr: &[i8]) -> Option<i8> {
     array.reverse();
 
     for i in 0..arr.len() - 1 {
-        res += (array[i] - array[i + 1])
+        res += array[i] - array[i + 1]
     }
     Some(res)
 }
@@ -352,4 +356,18 @@ pub fn two_sum2(nums: Vec<i32>, target: i32) -> Vec<i32> {
         };
     }
     todo!()
+}
+pub fn get_average(marks: &[i32]) -> i32 {
+    // marks.iter().fold(0, |ac, el| ac + el) / (marks.len() as i32)
+    marks.iter().sum::<i32>() / marks.len() as i32
+}
+pub fn next_id(ids: &[usize]) -> usize {
+    let mut ids = ids.to_vec();
+    ids.sort();
+    for i in 0..ids.len(){
+        if !ids.contains(&i) {
+            return i
+        }
+    }
+    ids.len()
 }
