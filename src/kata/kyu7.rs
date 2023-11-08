@@ -23,3 +23,21 @@ pub fn square_digits(n: u64) -> u64 {
         .join(""))
         .unwrap()
 }
+pub fn high_and_low(nums: &str) -> String {
+    let mut min = 10000;
+    let mut max = -10000;
+    for n in nums.split(" ") {
+        match n.parse::<i32>() {
+            Ok(v) => {
+                if min > v {
+                    min = v
+                }
+                if max < v {
+                    max = v
+                }
+            }
+            Err(_) => panic!("parse error")
+        }
+    }
+    format!("{} {}", max, min)
+}

@@ -2,75 +2,29 @@ pub mod kyu8 {
 
 }
 pub mod kyu6 {
-    use std::collections::{BTreeSet, HashMap, HashSet};
-    use itertools::Itertools;
-
-    pub fn find_odd_set(arr: &[i32]) -> i32 {
-        let mut set = BTreeSet::new();
-        for i in arr {
-            if !set.insert(*i) {
-                set.remove(i);
+    pub fn is_valid_walk(walk: &[char]) -> bool {
+        if walk.len() != 10 {return false};
+        let mut x = 0;
+        let mut y = 0;
+        for i in walk {
+            match i {
+                'n' => y += 1,
+                's' => y -= 1,
+                'w' => x -= 1,
+                'e' => x += 1,
+                _ => {}
             }
         }
-        set.pop_first().unwrap()
-    }
-    pub fn find_odd_xor(arr: &[i32]) -> i32 {
-        //this is very fast solution
-        arr.iter().fold(0i32, |a, v| {
-            println!("{}^{} = {}", a, v, a^v);
-            a^v
-        })
-    }
-    pub fn count_bits(n: i64) -> u32 {
-        format!("{:b}", n).matches('1').count() as u32
-    }
-    pub fn count_duplicates(text: &str) -> u32 {
-        let mut set = HashSet::new();
-        let mut res = 0;
-        for i in text.to_lowercase().split("") {
-            if !set.insert(i) {
-                res += 1
-            }
-        }
-        res
-    }
-    pub fn count_duplicates_hashmap(text: &str) -> u32 {
-        let mut map: HashMap<char, u16> = HashMap::new();
-        let mut res: u32 = 0;
-        for i in text.trim().to_lowercase().chars() {
-            let v = map.entry(i).or_insert(0);
-            *v += 1;
-        }
-        for (_, v) in map {
-            if v > 1 {
-                res += 1
-            }
-        }
-        res
-    }
-    pub fn count_duplicates_one_line(text: &str) -> u32 {
-        text.to_lowercase().chars().counts().values().filter(|&&i| i > 1).count() as u32
+        x == 0 && y == 0
     }
 }
 pub mod kyu7 {
-
-    pub fn high_and_low(nums: &str) -> String {
-        let mut min = 10000;
-        let mut max = -10000;
-        for n in nums.split(" ") {
-            match n.parse::<i32>() {
-                Ok(v) => {
-                    if min > v {
-                        min = v
-                    }
-                    if max < v {
-                        max = v
-                    }
-                }
-                Err(_) => panic!("parse error")
-            }
+    pub fn find_short(s: &str) -> u32 {
+        let mut min: u32 = 10000;
+        for word in s.split_whitespace() {
+            min = min.min(word.len() as u32)
         }
-        format!("{} {}", max, min)
+        min
     }
 }
 pub mod test {
