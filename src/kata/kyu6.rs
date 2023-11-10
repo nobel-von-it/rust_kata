@@ -1,15 +1,18 @@
 use itertools::Itertools;
 use std::collections::{BTreeSet, HashMap, HashSet};
 
-
 pub fn spin_words(words: &str) -> String {
-    words.split(" ").map(|e| {
-        if e.len() > 4 {
-            e.chars().rev().join("")
-        } else {
-            e.to_string()
-        }
-    }).collect::<Vec<_>>().join(" ")
+    words
+        .split(" ")
+        .map(|e| {
+            if e.len() > 4 {
+                e.chars().rev().join("")
+            } else {
+                e.to_string()
+            }
+        })
+        .collect::<Vec<_>>()
+        .join(" ")
 }
 
 pub fn find_odd_set(arr: &[i32]) -> i32 {
@@ -24,8 +27,8 @@ pub fn find_odd_set(arr: &[i32]) -> i32 {
 pub fn find_odd_xor(arr: &[i32]) -> i32 {
     //this is very fast solution
     arr.iter().fold(0i32, |a, v| {
-        println!("{}^{} = {}", a, v, a^v);
-        a^v
+        println!("{}^{} = {}", a, v, a ^ v);
+        a ^ v
     })
 }
 pub fn count_bits(n: i64) -> u32 {
@@ -56,5 +59,27 @@ pub fn count_duplicates_hashmap(text: &str) -> u32 {
     res
 }
 pub fn count_duplicates_one_line(text: &str) -> u32 {
-    text.to_lowercase().chars().counts().values().filter(|&&i| i > 1).count() as u32
+    text.to_lowercase()
+        .chars()
+        .counts()
+        .values()
+        .filter(|&&i| i > 1)
+        .count() as u32
+}
+pub fn is_valid_walk(walk: &[char]) -> bool {
+    if walk.len() != 10 {
+        return false;
+    };
+    let mut x = 0;
+    let mut y = 0;
+    for i in walk {
+        match i {
+            'n' => y += 1,
+            's' => y -= 1,
+            'w' => x -= 1,
+            'e' => x += 1,
+            _ => {}
+        }
+    }
+    x == 0 && y == 0
 }
