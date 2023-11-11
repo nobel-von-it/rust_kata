@@ -50,3 +50,17 @@ pub fn find_short(s: &str) -> u32 {
     }
     min
 }
+pub fn row_sum_odd_numbers(n: i64) -> i64 {
+    n.pow(3)
+}
+pub fn open_or_senior(data: Vec<(i32, i32)>) -> Vec<String> {
+    let mut result = vec![];
+    for i in data {
+        if i.0 >= 55 && i.1 > 7 {
+            result.push("Senior".to_string())
+        } else {
+            result.push("Open".to_string())
+        }
+    }
+    result
+}

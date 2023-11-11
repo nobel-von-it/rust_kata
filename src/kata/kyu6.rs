@@ -83,3 +83,27 @@ pub fn is_valid_walk(walk: &[char]) -> bool {
     }
     x == 0 && y == 0
 }
+pub fn alphabet_position(text: &str) -> String {
+    let alph = String::from("abcdefghijklmnopqrstuvwxyz");
+    let mut result = vec![];
+    for i in text.to_lowercase().chars() {
+        match alph.find(i) {
+            Some(el) => result.push((el + 1).to_string()),
+            None => {}
+        }
+    }
+    result.join(" ")
+}
+pub fn persistence(num: u64) -> u64 {
+    let mut num = num;
+    let mut count = 0;
+    while num > 9 {
+        num = num
+            .to_string()
+            .chars()
+            .map(|c| c.to_string().parse::<u64>().unwrap())
+            .fold(1, |acc, x| acc * x);
+        count += 1;
+    }
+    count
+}

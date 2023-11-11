@@ -1,6 +1,6 @@
-use std::cmp::max;
-use itertools::{Itertools, Either};
 use itertools::MinMaxResult::MinMax;
+use itertools::{Either, Itertools};
+use std::cmp::max;
 use std::cmp::Ordering;
 use std::collections::HashMap;
 
@@ -10,7 +10,11 @@ pub fn abbrev_name(name: &str) -> String {
     let first = v[0].chars().next().unwrap();
     let second = v[1].chars().next().unwrap();
 
-    format!("{}.{}", first.to_ascii_uppercase(), second.to_ascii_uppercase())
+    format!(
+        "{}.{}",
+        first.to_ascii_uppercase(),
+        second.to_ascii_uppercase()
+    )
 }
 
 pub fn slice_plus_slice(x: &[i32], y: &[i32]) -> i32 {
@@ -69,7 +73,10 @@ pub fn correct_tail_simplify(b: &str, t: char) -> bool {
 }
 
 pub fn create_phone_number1(numbers: &[u8]) -> String {
-    let result = numbers.iter().map(|s| s.to_string()).collect::<Vec<String>>();
+    let result = numbers
+        .iter()
+        .map(|s| s.to_string())
+        .collect::<Vec<String>>();
     let fp = result[0..3].join("");
     let sp = result[3..6].join("");
     let tp = result[6..].join("");
@@ -83,7 +90,10 @@ pub fn create_phone_number2(numbers: &[u8]) -> String {
 pub fn digital_root(n: i64) -> i64 {
     let mut res = n;
     while res > 9 {
-        res = res.to_string().chars().fold(0, |a: i64, b| a + i64::from(b.to_digit(10).unwrap()));
+        res = res
+            .to_string()
+            .chars()
+            .fold(0, |a: i64, b| a + i64::from(b.to_digit(10).unwrap()));
     }
     res
 }
@@ -94,7 +104,9 @@ pub fn digital_root_pp(n: i64) -> i64 {
 }
 
 pub fn disemvowel(s: &str) -> String {
-    s.chars().filter(|e| !"aeiouAEIOU".find(*e).is_some()).join("")
+    s.chars()
+        .filter(|e| !"aeiouAEIOU".find(*e).is_some())
+        .join("")
 }
 
 pub fn double_char(s: &str) -> String {
@@ -140,7 +152,7 @@ pub fn find_average1(slice: &[f64]) -> f64 {
 pub fn find_average2(arr: &[f64]) -> f64 {
     match arr.len() {
         0 => 0.,
-        n => arr.iter().sum::<f64>() / n as f64
+        n => arr.iter().sum::<f64>() / n as f64,
     }
 }
 
@@ -186,10 +198,16 @@ pub fn flick_switch(list: &[&str]) -> Vec<bool> {
 
 pub fn flick_switch2(list: &[&str]) -> Vec<bool> {
     let mut f = true;
-    list.iter().map(|&e| if e != "flick" { f } else {
-        f = !f;
-        f
-    }).collect()
+    list.iter()
+        .map(|&e| {
+            if e != "flick" {
+                f
+            } else {
+                f = !f;
+                f
+            }
+        })
+        .collect()
 }
 
 pub fn html_special_chars(html: &str) -> String {
@@ -199,7 +217,6 @@ pub fn html_special_chars(html: &str) -> String {
         .replace(">", "&gt;")
         .replace("\"", "&quot;")
 }
-
 
 pub fn merge_arrays1(arr1: &[i32], arr2: &[i32]) -> Vec<i32> {
     let mut v: Vec<i32> = vec![];
@@ -241,7 +258,9 @@ pub fn is_palindrome(x: i32) -> bool {
         return false;
     }
     let mut x = x;
-    let mut len = ("1".to_owned() + &*"0".repeat(x.to_string().len() - 1)).parse::<i32>().unwrap();
+    let mut len = ("1".to_owned() + &*"0".repeat(x.to_string().len() - 1))
+        .parse::<i32>()
+        .unwrap();
     while len > 1 {
         let first = x % 10;
         let end = x / len % 10;
@@ -272,27 +291,30 @@ pub fn rps1(p1: &str, p2: &str) -> &'static str {
 
 // or
 pub fn rps2(p1: &str, p2: &str) -> &'static str {
-    if p1 == p2 { return "Draw!"; }
+    if p1 == p2 {
+        return "Draw!";
+    }
     match (p1, p2) {
         ("scissors", "paper") | ("paper", "rock") | ("rock", "scissors") => "Player 1 won!",
-        _ => "Player 2 won!"
+        _ => "Player 2 won!",
     }
 }
-
 
 pub fn sum_mix(a: &[Either<i32, String>]) -> i32 {
     let mut r = 0;
     for i in a {
         match i {
-            Either::Left(x) => { r += x }
-            Either::Right(x) => { r += x.parse::<i32>().unwrap() }
+            Either::Left(x) => r += x,
+            Either::Right(x) => r += x.parse::<i32>().unwrap(),
         }
     }
     r
 }
 
 pub fn sum_of_differences1(arr: &[i8]) -> Option<i8> {
-    if arr.len() < 2 { return None; }
+    if arr.len() < 2 {
+        return None;
+    }
     let mut array = arr.to_vec();
     let mut res: i8 = 0;
 
@@ -309,23 +331,27 @@ pub fn sum_of_differences1(arr: &[i8]) -> Option<i8> {
 pub fn sum_of_differences2(arr: &[i8]) -> Option<i8> {
     match arr.iter().minmax() {
         MinMax(x, y) => Some(y - x),
-        _ => None
+        _ => None,
     }
 }
 
 pub fn mt2(n: u64) -> String {
-    (1..=10).map(|a| format!("{} * {} = {}", a, n, a * n)).join("\n")
+    (1..=10)
+        .map(|a| format!("{} * {} = {}", a, n, a * n))
+        .join("\n")
 }
 
 pub fn points(g: &[String]) -> u32 {
-    g.iter().map(|e| {
-        let (l, r) = e.split_once(':').unwrap();
-        match l.cmp(r) {
-            Ordering::Less => 0,
-            Ordering::Equal => 1,
-            Ordering::Greater => 3,
-        }
-    }).sum()
+    g.iter()
+        .map(|e| {
+            let (l, r) = e.split_once(':').unwrap();
+            match l.cmp(r) {
+                Ordering::Less => 0,
+                Ordering::Equal => 1,
+                Ordering::Greater => 3,
+            }
+        })
+        .sum()
 }
 
 pub fn two_sort(arr: &[&str]) -> String {
@@ -336,27 +362,6 @@ pub fn two_sort(arr: &[&str]) -> String {
     res
 }
 
-pub fn two_sum1(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    for i in 0..nums.len() {
-        for j in i + 1..nums.len() {
-            if nums[i] + nums[j] == target {
-                return vec![i as i32, j as i32];
-            }
-        }
-    }
-    todo!()
-}
-
-pub fn two_sum2(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    let mut hash = HashMap::new();
-    for (i, num) in nums.iter().enumerate() {
-        match hash.get(&(target - *num)) {
-            Some(&j) => return vec![i as i32, j],
-            None => hash.insert(*num, i as i32),
-        };
-    }
-    todo!()
-}
 pub fn get_average(marks: &[i32]) -> i32 {
     // marks.iter().fold(0, |ac, el| ac + el) / (marks.len() as i32)
     marks.iter().sum::<i32>() / marks.len() as i32
@@ -364,10 +369,13 @@ pub fn get_average(marks: &[i32]) -> i32 {
 pub fn next_id(ids: &[usize]) -> usize {
     let mut ids = ids.to_vec();
     ids.sort();
-    for i in 0..ids.len(){
+    for i in 0..ids.len() {
         if !ids.contains(&i) {
-            return i
+            return i;
         }
     }
     ids.len()
+}
+pub fn square_sum(vec: Vec<i32>) -> i32 {
+    vec.iter().map(|x| x.pow(2)).sum()
 }
