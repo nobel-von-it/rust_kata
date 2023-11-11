@@ -1,8 +1,53 @@
-pub mod kyu8 {}
+pub mod kyu8 {
+    pub fn square_sum(vec: Vec<i32>) -> i32 {
+        vec.iter().map(|x| x.pow(2)).sum()
+    }
+}
 pub mod kyu5 {}
 pub mod kyu4 {}
-pub mod kyu6 {}
-pub mod kyu7 {}
+pub mod kyu6 {
+    pub fn alphabet_position(text: &str) -> String {
+        let alph = String::from("abcdefghijklmnopqrstuvwxyz");
+        let mut result = vec![];
+        for i in text.to_lowercase().chars() {
+            match alph.find(i) {
+                Some(el) => result.push((el + 1).to_string()),
+                None => {}
+            }
+        }
+        result.join(" ")
+    }
+    pub fn persistence(num: u64) -> u64 {
+        let mut num = num;
+        let mut count = 0;
+        while num > 9 {
+            num = num
+                .to_string()
+                .chars()
+                .map(|c| c.to_string().parse::<u64>().unwrap())
+                .fold(1, |acc, x| acc * x);
+            count += 1;
+        }
+        count
+    }
+}
+pub mod kyu7 {
+    pub fn row_sum_odd_numbers(n: i64) -> i64 {
+        n.pow(3)
+    }
+    pub fn open_or_senior(data: Vec<(i32, i32)>) -> Vec<String> {
+        let mut result = vec![];
+        for i in data {
+            if i.0 >= 55 && i.1 >= 7 {
+                result.push("Senior".to_string())
+            } else {
+                result.push("Open".to_string())
+            }
+        }
+        result
+    }
+}
+
 pub mod test {
     use crate::maybe_kata::code;
     use std::time::Instant;
