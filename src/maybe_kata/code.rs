@@ -1,8 +1,52 @@
 pub mod kyu8 {}
-pub mod kyu5 {}
+pub mod kyu5 {
+    pub fn move_zeros(arr: &[u8]) -> Vec<u8> {
+        let arr2 = arr.to_vec();
+        let mut res_arr = vec![];
+        let mut zeros = 0;
+        for i in arr2 {
+            if i != 0 {
+                res_arr.push(i)
+            } else {
+                zeros += 1
+            }
+        }
+        for _i in 0..zeros {
+            res_arr.push(0)
+        }
+        res_arr
+    }
+    pub fn move_zeros_smart(arr: &[u8]) -> Vec<u8> {
+        let mut res = Vec::with_capacity(arr.len());
+        res.extend(arr.iter().filter(|&&x| x != 0));
+        res.resize(arr.len(), 0);
+        res
+    }
+}
 pub mod kyu4 {}
-pub mod kyu6 {}
-pub mod kyu7 {}
+pub mod kyu6 {
+    use std::collections::HashSet;
+
+    pub fn is_pangram(s: &str) -> bool {
+        s.to_lowercase()
+            .chars()
+            .filter(|c| c.is_alphabetic())
+            .collect::<HashSet<char>>()
+            .len()
+            == 26
+    }
+}
+pub mod kyu7 {
+    pub fn get_sum(a: i64, b: i64) -> i64 {
+        let min = a.min(b);
+        let max = a.max(b);
+        let mut result: i64 = 0;
+        for i in min..=max {
+            result += i
+        }
+        result
+    }
+}
 
 pub mod test {
     use crate::maybe_kata::code;
