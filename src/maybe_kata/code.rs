@@ -25,7 +25,7 @@ pub mod kyu5 {
 }
 pub mod kyu4 {}
 pub mod kyu6 {
-    use std::collections::HashSet;
+    use std::collections::{HashMap, HashSet};
 
     pub fn is_pangram(s: &str) -> bool {
         s.to_lowercase()
@@ -35,8 +35,24 @@ pub mod kyu6 {
             .len()
             == 26
     }
+    pub fn decode_morse(encoded: &str) -> String {
+        let MORSE_CODE: HashMap<&str, String> = HashMap::new();
+        let mut result = String::new();
+        for word in encoded.split("  ") {
+            for ch in word.split_whitespace() {
+                match MORSE_CODE.get(ch) {
+                    Some(c) => result.push_str(c),
+                    None => {}
+                }
+            }
+            result.push(' ');
+        }
+        result.trim().to_string()
+    }
 }
 pub mod kyu7 {
+    use itertools::Itertools;
+
     pub fn get_sum(a: i64, b: i64) -> i64 {
         let min = a.min(b);
         let max = a.max(b);
@@ -45,6 +61,13 @@ pub mod kyu7 {
             result += i
         }
         result
+    }
+    pub fn validate_pin(pin: &str) -> bool {
+        match pin.len() {
+            4 => pin.matches(char::is_numeric).count() == 4,
+            6 => pin.matches(char::is_numeric).count() == 6,
+            _ => false,
+        }
     }
 }
 
