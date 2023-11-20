@@ -1,4 +1,8 @@
-pub mod kyu8 {}
+pub mod kyu8 {
+    pub fn maps(values: &Vec<i32>) -> Vec<i32> {
+        values.iter().map(|x| x * 2).collect()
+    }
+}
 pub mod kyu5 {
     pub fn move_zeros(arr: &[u8]) -> Vec<u8> {
         let arr2 = arr.to_vec();
