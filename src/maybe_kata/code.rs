@@ -40,11 +40,11 @@ pub mod kyu6 {
             == 26
     }
     pub fn decode_morse(encoded: &str) -> String {
-        let MORSE_CODE: HashMap<&str, String> = HashMap::new();
+        let _morse_code: HashMap<&str, String> = HashMap::new();
         let mut result = String::new();
         for word in encoded.split("  ") {
             for ch in word.split_whitespace() {
-                match MORSE_CODE.get(ch) {
+                match _morse_code.get(ch) {
                     Some(c) => result.push_str(c),
                     None => {}
                 }
