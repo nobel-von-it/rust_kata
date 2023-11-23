@@ -77,12 +77,11 @@ pub mod kyu7 {
         (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
     }
     pub fn descending_order(x: u64) -> u64 {
-        x.to_string().chars().map(|x| x.to_string().parse::<u64>()).sorted().join("").parse::<u64>().unwrap()
         let mut ch: Vec<String> = x.to_string().chars().map(|c| c.to_string()).collect();
         ch.sort();
         ch.reverse();
         ch.join("").parse::<u64>().unwrap()
-}
+    }
 }
 
 pub mod test {
