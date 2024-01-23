@@ -1,5 +1,6 @@
+use std::collections::{HashMap, HashSet};
 use itertools::Itertools;
-use std::str::FromStr;
+use std::str::{Chars, FromStr};
 
 pub fn neutralise(s1: &str, s2: &str) -> String {
     assert_eq!(s1.len(), s2.len());
@@ -63,4 +64,63 @@ pub fn open_or_senior(data: Vec<(i32, i32)>) -> Vec<String> {
         }
     }
     result
+}
+
+// pub fn word_pattern(word: &str) -> String {
+//     let mut word = word.to_lowercase();
+//     let mut cryptmap = HashMap::new();
+//     let mut res = String::new();
+//     let mut counter = 0;
+//
+//     for c in word.chars() {
+//         match cryptmap.insert(c, counter) {
+//             None => 0,
+//             Some(v) => cryptmap.insert(c, v).unwrap()
+//         };
+//         counter += 1
+//     }
+//     for
+//     println!("{cryptmap:?}");
+//     res
+// }
+
+pub fn word_pattern(word: &str) -> String {
+    let mut res = String::new();
+    let mut cryptomap = HashMap::new();
+    let mut counter = 0;
+
+    for c in word.to_lowercase().chars() {
+        match cryptomap.insert(c, counter) {
+            None => {
+                counter += 1;
+            },
+            Some(v) => {
+                cryptomap.insert(c, v).unwrap();
+            },
+        };
+        match cryptomap.get(&c) {
+            None => {}
+            Some(v) => {res.push_str(&format!("{v}."))}
+        }
+    }
+    res.pop();
+
+    res
+}
+
+pub fn wall_paper(l: f64, w: f64, h: f64) -> String {
+    const NUMBERS: [&str; 21] = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve","thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
+    if l == 0.0 || w == 0.0 || h == 0.0 {
+        return NUMBERS[0].to_string()
+    }
+    let p = 2.0 * l * h + 2.0 * w * h;
+    let pp = p + p / 100.0 * 15.0;
+
+    NUMBERS[(pp / 5.2).ceil() as usize].to_string()
+}
+
+#[test]
+fn test() {
+    assert_eq!(wall_paper(6.3, 4.5, 3.29), "sixteen".to_string());
+    assert_eq!(wall_paper(0.0, 5.4, 3.3), "zero".to_string())
 }
