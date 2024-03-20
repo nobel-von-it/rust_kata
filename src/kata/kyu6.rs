@@ -3,7 +3,7 @@ use std::collections::{BTreeSet, HashMap, HashSet};
 
 pub fn spin_words(words: &str) -> String {
     words
-        .split(" ")
+        .split(' ')
         .map(|e| {
             if e.len() > 4 {
                 e.chars().rev().join("")
@@ -87,9 +87,8 @@ pub fn alphabet_position(text: &str) -> String {
     let alph = String::from("abcdefghijklmnopqrstuvwxyz");
     let mut result = vec![];
     for i in text.to_lowercase().chars() {
-        match alph.find(i) {
-            Some(el) => result.push((el + 1).to_string()),
-            None => {}
+        if let Some(el) = alph.find(i) {
+            result.push((el + 1).to_string())
         }
     }
     result.join(" ")
@@ -102,7 +101,7 @@ pub fn persistence(num: u64) -> u64 {
             .to_string()
             .chars()
             .map(|c| c.to_string().parse::<u64>().unwrap())
-            .fold(1, |acc, x| acc * x);
+            .product();
         count += 1;
     }
     count

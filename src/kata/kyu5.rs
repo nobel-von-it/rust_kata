@@ -17,7 +17,7 @@ pub fn beeramid(bonus: i32, price: f32) -> usize {
 }
 pub fn beeramid_one_line(bonus: i32, price: f32) -> usize {
     let count = (bonus as f32 / price) as i32;
-    ((1i32)..)
+    (1i32..)
         .scan(0, |acc, x| {
             *acc += x.pow(2);
             Some(*acc)
