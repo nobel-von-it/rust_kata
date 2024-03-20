@@ -1,11 +1,11 @@
+use core::f64;
 use itertools::MinMaxResult::MinMax;
 use itertools::{Either, Itertools};
 use std::cmp::max;
 use std::cmp::Ordering;
-use std::collections::HashMap;
 
 pub fn abbrev_name(name: &str) -> String {
-    let v: Vec<&str> = name.split(" ").collect();
+    let v: Vec<&str> = name.split(' ').collect();
 
     let first = v[0].chars().next().unwrap();
     let second = v[1].chars().next().unwrap();
@@ -35,8 +35,7 @@ pub fn slice_plus_slice(x: &[i32], y: &[i32]) -> i32 {
 }
 
 pub fn bin_to_decimal(i: &str) -> i32 {
-    let res = i32::from_str_radix(i, 2).unwrap();
-    res
+    i32::from_str_radix(i, 2).unwrap()
 }
 
 pub fn bonus_time(s: u64, bonus: bool) -> String {
@@ -84,7 +83,7 @@ pub fn create_phone_number1(numbers: &[u8]) -> String {
 }
 //or
 pub fn create_phone_number2(numbers: &[u8]) -> String {
-    let result: String = numbers.into_iter().map(|e| e.to_string()).collect();
+    let result: String = numbers.iter().map(|e| e.to_string()).collect();
     format!("({}) {}-{}", &result[..3], &result[3..6], &result[6..])
 }
 pub fn digital_root(n: i64) -> i64 {
@@ -105,7 +104,7 @@ pub fn digital_root_pp(n: i64) -> i64 {
 
 pub fn disemvowel(s: &str) -> String {
     s.chars()
-        .filter(|e| !"aeiouAEIOU".find(*e).is_some())
+        .filter(|e| "aeiouAEIOU".find(*e).is_none())
         .join("")
 }
 
@@ -120,7 +119,7 @@ pub fn double_char(s: &str) -> String {
 
 // or
 pub fn double_char2(s: &str) -> String {
-    s.chars().map(|c| format!("{}{}", c, c)).collect()
+    s.chars().map(|c| c.to_string().repeat(2)).collect()
 }
 
 pub fn fake_bin1(s: &str) -> String {
@@ -157,8 +156,9 @@ pub fn find_average2(arr: &[f64]) -> f64 {
 }
 
 pub fn find_difference(a: &[i32; 3], b: &[i32; 3]) -> i32 {
-    let va = a.into_iter().fold(1, |acc, i| acc * i);
-    let vb = b.into_iter().fold(1, |acc, i| acc * i);
+    //let va = a.iter().fold(1, |acc, i| acc * i);
+    let va: i32 = a.iter().product();
+    let vb: i32 = b.iter().product();
     (va - vb).abs()
 }
 
@@ -187,7 +187,7 @@ pub fn first_non_consecutive(arr: &Vec<i32>) -> Option<i32> {
 pub fn flick_switch(list: &[&str]) -> Vec<bool> {
     let mut v: Vec<bool> = vec![];
     let mut flag = true;
-    for i in list.to_vec() {
+    for &i in list {
         if i == "flick" {
             flag = !flag
         }
@@ -212,10 +212,10 @@ pub fn flick_switch2(list: &[&str]) -> Vec<bool> {
 
 pub fn html_special_chars(html: &str) -> String {
     html.to_string()
-        .replace("&", "&amp;")
-        .replace("<", "&lt;")
-        .replace(">", "&gt;")
-        .replace("\"", "&quot;")
+        .replace('&', "&amp;")
+        .replace('<', "&lt;")
+        .replace('>', "&gt;")
+        .replace('"', "&quot;")
 }
 
 pub fn merge_arrays1(arr1: &[i32], arr2: &[i32]) -> Vec<i32> {
@@ -273,23 +273,6 @@ pub fn is_palindrome(x: i32) -> bool {
     true
 }
 
-pub fn rps1(p1: &str, p2: &str) -> &'static str {
-    let results = ["Draw!", "Player 1 won!", "Player 2 won!"];
-    if p1 == p2 {
-        return results[0];
-    }
-    return if p1 == "scissors" && p2 == "paper" {
-        results[1]
-    } else if p1 == "paper" && p2 == "rock" {
-        results[1]
-    } else if p1 == "rock" && p2 == "scissors" {
-        results[1]
-    } else {
-        results[2]
-    };
-}
-
-// or
 pub fn rps2(p1: &str, p2: &str) -> &'static str {
     if p1 == p2 {
         return "Draw!";
