@@ -29,7 +29,7 @@ pub mod kyu5 {
 }
 pub mod kyu4 {}
 pub mod kyu6 {
-    use std::collections::{BTreeMap, HashMap, HashSet};
+    use std::collections::{HashMap, HashSet};
 
     pub fn is_pangram(s: &str) -> bool {
         s.to_lowercase()
