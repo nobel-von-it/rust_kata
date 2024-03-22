@@ -47,4 +47,3 @@ fn avg_and_next_id_tests() {
     assert_eq!(kata::kyu8::next_id(&[]), 0);
     assert_eq!(kata::kyu8::next_id(&[10]), 0);
 }
-
