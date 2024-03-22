@@ -1,9 +1,4 @@
-use std::time::Instant;
-
-use rand::Rng;
-
 pub mod kata;
-pub mod maybe_kata;
 
 // in the kata module:
 // ---

@@ -65,25 +65,6 @@ pub fn open_or_senior(data: Vec<(i32, i32)>) -> Vec<String> {
     }
     result
 }
-
-// pub fn word_pattern(word: &str) -> String {
-//     let mut word = word.to_lowercase();
-//     let mut cryptmap = HashMap::new();
-//     let mut res = String::new();
-//     let mut counter = 0;
-//
-//     for c in word.chars() {
-//         match cryptmap.insert(c, counter) {
-//             None => 0,
-//             Some(v) => cryptmap.insert(c, v).unwrap()
-//         };
-//         counter += 1
-//     }
-//     for
-//     println!("{cryptmap:?}");
-//     res
-// }
-
 pub fn word_pattern(word: &str) -> String {
     let mut res = String::new();
     let mut cryptomap = HashMap::new();
@@ -140,10 +121,28 @@ pub fn wall_paper(l: f64, w: f64, h: f64) -> String {
 
     NUMBERS[(pp / 5.2).ceil() as usize].to_string()
 }
-
-#[test]
-fn test() {
-    assert_eq!(wall_paper(6.3, 4.5, 3.29), "sixteen".to_string());
-    assert_eq!(wall_paper(0.0, 5.4, 3.3), "zero".to_string())
+pub fn get_sum(a: i64, b: i64) -> i64 {
+    let min = a.min(b);
+    let max = a.max(b);
+    let mut result: i64 = 0;
+    for i in min..=max {
+        result += i
+    }
+    result
 }
-
+pub fn validate_pin(pin: &str) -> bool {
+    match pin.len() {
+        4 => pin.matches(char::is_numeric).count() == 4,
+        6 => pin.matches(char::is_numeric).count() == 6,
+        _ => false,
+    }
+}
+pub fn is_leap_year(year: i32) -> bool {
+    (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
+}
+pub fn descending_order(x: u64) -> u64 {
+    let mut ch: Vec<String> = x.to_string().chars().map(|c| c.to_string()).collect();
+    ch.sort();
+    ch.reverse();
+    ch.join("").parse::<u64>().unwrap()
+}

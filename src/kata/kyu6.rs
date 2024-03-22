@@ -109,3 +109,25 @@ pub fn persistence(num: u64) -> u64 {
     }
     count
 }
+
+pub fn is_pangram(s: &str) -> bool {
+    s.to_lowercase()
+        .chars()
+        .filter(|c| c.is_alphabetic())
+        .collect::<HashSet<char>>()
+        .len()
+        == 26
+}
+pub fn decode_morse(encoded: &str) -> String {
+    let _morse_code: HashMap<&str, String> = HashMap::new();
+    let mut result = String::new();
+    for word in encoded.split("  ") {
+        for ch in word.split_whitespace() {
+            if let Some(c) = _morse_code.get(ch) {
+                result.push_str(c)
+            }
+        }
+        result.push(' ');
+    }
+    result.trim().to_string()
+}

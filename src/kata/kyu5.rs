@@ -25,3 +25,25 @@ pub fn beeramid_one_line(bonus: i32, price: f32) -> usize {
         .take_while(|&x| x <= count)
         .count()
 }
+pub fn move_zeros(arr: &[u8]) -> Vec<u8> {
+    let arr2 = arr.to_vec();
+    let mut res_arr = vec![];
+    let mut zeros = 0;
+    for i in arr2 {
+        if i != 0 {
+            res_arr.push(i)
+        } else {
+            zeros += 1
+        }
+    }
+    for _i in 0..zeros {
+        res_arr.push(0)
+    }
+    res_arr
+}
+pub fn move_zeros_smart(arr: &[u8]) -> Vec<u8> {
+    let mut res = Vec::with_capacity(arr.len());
+    res.extend(arr.iter().filter(|&&x| x != 0));
+    res.resize(arr.len(), 0);
+    res
+}
