@@ -1,4 +1,4 @@
-use crate::kata;
+use crate::kata::{self, leetcode};
 use std::time::Instant;
 
 #[test]
@@ -46,4 +46,11 @@ fn avg_and_next_id_tests() {
     );
     assert_eq!(kata::kyu8::next_id(&[]), 0);
     assert_eq!(kata::kyu8::next_id(&[10]), 0);
+}
+#[test]
+fn two_sum_test() {
+    assert_eq!(
+        leetcode::two_sum2(vec![1, 2, 3, 4, 55, 100], 155),
+        vec![5, 4]
+    )
 }
