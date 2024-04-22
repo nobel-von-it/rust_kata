@@ -5,6 +5,7 @@ use std::{
 };
 
 pub mod palindrome_linked_list;
+pub mod score;
 
 pub fn two_sum1(nums: Vec<i32>, target: i32) -> Vec<i32> {
     for i in 0..nums.len() {
