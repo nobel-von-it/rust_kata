@@ -1,7 +1,6 @@
 use std::{
-    cmp::max,
     collections::{HashMap, HashSet},
-    u64, u8,
+    u8,
 };
 
 pub mod palindrome_linked_list;
