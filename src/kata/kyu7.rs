@@ -146,3 +146,12 @@ pub fn descending_order(x: u64) -> u64 {
     ch.reverse();
     ch.join("").parse::<u64>().unwrap()
 }
+pub fn reverse_letters(s: &str) -> String {
+    s.chars().rev().filter(|c| c.is_alphabetic()).collect()
+}
+pub fn min_max(lst: &[i32]) -> (i32, i32) {
+    (
+        lst.iter().min().unwrap().to_owned(),
+        lst.iter().max().unwrap().to_owned(),
+    )
+}

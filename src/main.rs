@@ -10,4 +10,5 @@ pub mod kata;
 // ---
 fn main() {
     // need switch to --lib
+    println!("{:?}", kata::kyu5::solution(0, u64::max_value()));
 }
