@@ -1,15 +1,12 @@
 use itertools::Itertools;
-use std::{
-    collections::{BTreeSet, HashMap, HashSet},
-    i32,
-};
+use std::collections::{BTreeSet, HashMap, HashSet};
 
 pub fn spin_words(words: &str) -> String {
     words
         .split(' ')
         .map(|e| {
             if e.len() > 4 {
-                e.chars().rev().join("")
+             e.chars().rev().join("")
             } else {
                 e.to_string()
             }
@@ -130,4 +127,16 @@ pub fn decode_morse(encoded: &str) -> String {
         result.push(' ');
     }
     result.trim().to_string()
+}
+pub fn split_strings(s: &str) -> Vec<String> {
+    s.chars()
+        .chunks(2)
+        .into_iter()
+        .map(|c| c.pad_using(2, |_| '_').collect())
+        .collect()
+}
+pub fn find_number(from: u32, to: u32, res: &str) -> Vec<u32> {
+    (from..=to)
+        .filter(|x| res.contains(&x.to_string()))
+        .collect_vec()
 }

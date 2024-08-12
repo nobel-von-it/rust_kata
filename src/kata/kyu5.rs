@@ -1,5 +1,3 @@
-use std::sync::{Arc, Mutex};
-
 use itertools::Itertools;
 
 pub fn beeramid(bonus: i32, price: f32) -> usize {
@@ -19,7 +17,6 @@ pub fn beeramid(bonus: i32, price: f32) -> usize {
         count
     }
 }
-#[must_use]
 pub fn beeramid_one_line(bonus: i32, price: f32) -> usize {
     let count = (bonus as f32 / price) as i32;
     (1i32..)
@@ -30,22 +27,11 @@ pub fn beeramid_one_line(bonus: i32, price: f32) -> usize {
         .take_while(|&x| x <= count)
         .count()
 }
-#[must_use]
 pub fn move_zeros(arr: &[u8]) -> Vec<u8> {
-    let arr2 = arr.to_vec();
-    let mut res_arr = vec![];
-    let mut zeros = 0;
-    for i in arr2 {
-        if i != 0 {
-            res_arr.push(i);
-        } else {
-            zeros += 1;
-        }
-    }
-    for _i in 0..zeros {
-        res_arr.push(0);
-    }
-    res_arr
+    arr.iter()
+        .sorted_by_key(|&x| 0.cmp(x))
+        .copied()
+        .collect::<Vec<u8>>()
 }
 #[must_use]
 pub fn move_zeros_smart(arr: &[u8]) -> Vec<u8> {
@@ -59,15 +45,14 @@ fn is_prime(x: u64) -> bool {
     if x == 2 {
         return true;
     }
-    (2..=(x as f64).sqrt() as u64)
-        .find(|n| x % n == 0)
-        .is_none()
+    !(2..=(x as f64).sqrt() as u64).any(|n| x % n == 0)
 }
 pub fn solution(n: u64, m: u64) -> Vec<u64> {
     let start = (n as f64).sqrt().sqrt().ceil() as u64;
     let end = (m as f64).sqrt().sqrt().floor() as u64;
 
     (start..=end)
-        .filter_map(|x| is_prime(x).then(|| x.pow(4)))
+        .filter(|&x| is_prime(x))
+        .map(|x| x.pow(4))
         .collect()
 }

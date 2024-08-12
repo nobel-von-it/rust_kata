@@ -155,3 +155,46 @@ pub fn min_max(lst: &[i32]) -> (i32, i32) {
         lst.iter().max().unwrap().to_owned(),
     )
 }
+pub fn bingo<S: AsRef<str>>(ticket: &[(S, u8)], win: usize) -> &'static str {
+    if ticket
+        .iter()
+        .filter(|(s, n)| !s.as_ref().as_bytes().contains(n))
+        .count()
+        >= win
+    {
+        "Winner!"
+    } else {
+        "Loser!"
+    }
+}
+pub fn max_rot(n: u64) -> u64 {
+    let mut rots = vec![];
+    for i in 1..=3 {
+        let mut sn = n.to_string().chars().skip(i).join("");
+        sn.push_str(&n.to_string().chars().take(i).join(""));
+        println!("{}", &sn);
+        rots.push(sn.parse::<u64>().unwrap())
+    }
+    rots.iter().max().unwrap().to_owned()
+}
+pub fn my_languages(res: HashMap<&str, i32>) -> Vec<&str> {
+    res.iter()
+        .filter(|(_, &s)| s >= 60)
+        .sorted_by_key(|a| -a.1)
+        .map(|(&l, _)| l)
+        .collect()
+}
+pub fn is_triangle(a: i64, b: i64, c: i64) -> bool {
+    if a <= 0 || b <= 0 || c <= 0 {
+        return false;
+    }
+    a + b > c && a + c > b && b + c > a
+}
+#[cfg(test)]
+mod test {
+    use super::max_rot;
+    #[test]
+    fn test_max_rot() {
+        let _n = max_rot(38458215);
+    }
+}
