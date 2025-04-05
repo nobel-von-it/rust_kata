@@ -6,7 +6,7 @@ pub fn spin_words(words: &str) -> String {
         .split(' ')
         .map(|e| {
             if e.len() > 4 {
-             e.chars().rev().join("")
+                e.chars().rev().join("")
             } else {
                 e.to_string()
             }
@@ -139,4 +139,24 @@ pub fn find_number(from: u32, to: u32, res: &str) -> Vec<u32> {
     (from..=to)
         .filter(|x| res.contains(&x.to_string()))
         .collect_vec()
+}
+pub fn compute_depth(n: u16) -> u8 {
+    use std::collections::HashSet;
+
+    let original = n;
+    let mut n = n;
+
+    let mut depth = 0;
+    let mut numbers = HashSet::new();
+    while numbers.len() < 10 {
+        depth += 1;
+        n = original * depth;
+        n.to_string()
+            .chars()
+            .map(|x| x.to_digit(10).unwrap())
+            .for_each(|x| {
+                numbers.insert(x);
+            });
+    }
+    depth as u8 - 1
 }
