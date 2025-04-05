@@ -144,7 +144,7 @@ pub fn compute_depth(n: u16) -> u8 {
     use std::collections::HashSet;
 
     let original = n;
-    let mut n = n;
+    let mut n;
 
     let mut depth = 0;
     let mut numbers = HashSet::new();
