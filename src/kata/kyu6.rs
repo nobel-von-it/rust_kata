@@ -160,3 +160,50 @@ pub fn compute_depth(n: u16) -> u8 {
     }
     depth as u8 - 1
 }
+
+pub fn prime_reduction(a: u32, b: u32) -> usize {
+    (a..b).filter(|x| is_prime(*x) && prime_end(*x)).count()
+}
+
+fn prime_end(n: u32) -> bool {
+    let mut n = n;
+    let mut seen = std::collections::HashSet::new();
+
+    while n != 1 && !seen.contains(&n) {
+        seen.insert(n);
+        n = sum_squares(n);
+    }
+
+    n == 1
+}
+
+fn sum_squares(n: u32) -> u32 {
+    let mut n = n;
+    let mut res = 0;
+
+    while n > 0 {
+        let cur = n % 10;
+        res += cur * cur;
+        n /= 10;
+    }
+    res
+}
+
+fn is_prime(n: u32) -> bool {
+    if n < 2 {
+        return false;
+    }
+    if n == 2 {
+        return true;
+    }
+    if n % 2 == 0 {
+        return false;
+    }
+    let sqrt = (n as f64).sqrt() as u32;
+    for i in (3..=sqrt).step_by(2) {
+        if n % i == 0 {
+            return false;
+        }
+    }
+    true
+}
